@@ -132,7 +132,8 @@ public class BluetoothClassicService extends BluetoothService {
                 @RequiresPermission(Manifest.permission.BLUETOOTH)
                 @Override
                 public void run() {
-                    onEventCallback.onDeviceName(device.getName());
+                    if (onEventCallback != null)
+                        onEventCallback.onDeviceName(device.getName());
                 }
 
             });
@@ -193,7 +194,8 @@ public class BluetoothClassicService extends BluetoothService {
             runOnMainThread(new Runnable() {
                 @Override
                 public void run() {
-                    onEventCallback.onToast("Could not connect to device");
+                    if (onEventCallback != null)
+                        onEventCallback.onToast("Could not connect to device");
                 }
             });
     }
@@ -210,7 +212,8 @@ public class BluetoothClassicService extends BluetoothService {
             runOnMainThread(new Runnable() {
                 @Override
                 public void run() {
-                    onEventCallback.onToast("Connection lost");
+                    if (onEventCallback != null)
+                        onEventCallback.onToast("Connection lost");
                 }
             });
     }
@@ -365,7 +368,8 @@ public class BluetoothClassicService extends BluetoothService {
                 runOnMainThread(new Runnable() {
                     @Override
                     public void run() {
-                        onEventCallback.onDataRead(data, data.length);
+                        if (onEventCallback != null)
+                            onEventCallback.onDataRead(data, data.length);
                     }
                 });
             }
@@ -385,7 +389,8 @@ public class BluetoothClassicService extends BluetoothService {
                     runOnMainThread(new Runnable() {
                         @Override
                         public void run() {
-                            onEventCallback.onDataWrite(buffer);
+                            if (onEventCallback != null)
+                                onEventCallback.onDataWrite(buffer);
                         }
                     });
             } catch (Exception e) {
@@ -433,7 +438,8 @@ public class BluetoothClassicService extends BluetoothService {
                     runOnMainThread(new Runnable() {
                         @Override
                         public void run() {
-                            onScanCallback.onDeviceDiscovered(device, RSSI);
+                            if (onScanCallback != null)
+                                onScanCallback.onDeviceDiscovered(device, RSSI);
                         }
                     });
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
@@ -449,7 +455,8 @@ public class BluetoothClassicService extends BluetoothService {
             runOnMainThread(new Runnable() {
                 @Override
                 public void run() {
-                    onScanCallback.onStartScan();
+                    if (onScanCallback != null)
+                        onScanCallback.onStartScan();
                 }
             });
 
@@ -485,7 +492,8 @@ public class BluetoothClassicService extends BluetoothService {
             runOnMainThread(new Runnable() {
                 @Override
                 public void run() {
-                    onScanCallback.onStopScan();
+                    if (onScanCallback != null)
+                        onScanCallback.onStopScan();
                 }
             });
     }

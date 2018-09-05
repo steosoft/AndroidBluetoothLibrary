@@ -78,7 +78,8 @@ public abstract class BluetoothService {
             runOnMainThread(new Runnable() {
                 @Override
                 public void run() {
-                    onEventCallback.onStatusChange(status);
+                    if (onEventCallback != null)
+                        onEventCallback.onStatusChange(status);
                 }
             });
     }
